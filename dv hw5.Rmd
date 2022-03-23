@@ -1,0 +1,22 @@
+```{r}
+library(maps)
+library(mapdata)
+library(ggplot2)
+library(ggrepel)
+library(cowplot)
+library(socviz)
+library(mapproj)
+
+
+state<- map_data("state")
+
+california=subset(state, region=="california")
+load(file='wind_turbines.rda')
+wind_ca=subset(wind_turbines, t_state=="CA")
+
+ggplot()+geom_polygon(data=california,aes(x=long,y=lat,group=group),fill="blue")+
+  coord_fixed(1.3)+geom_point(data=wind_ca,aes(x=xlong,y=ylat),color="yellow",size=4)
+
+
+```
+
